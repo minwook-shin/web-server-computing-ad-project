@@ -17,5 +17,5 @@ data class Answer(
     @ManyToOne
     @JoinColumn(name = "question_id")
     @JsonBackReference
-    val question: Question? = null
+    var question: Question? = null
 )
