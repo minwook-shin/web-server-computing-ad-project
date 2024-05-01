@@ -14,3 +14,11 @@ CREATE TABLE Answer
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (question_id) REFERENCES Question (id)
 );
+
+
+CREATE TABLE User
+(
+    id       BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255)
+);
