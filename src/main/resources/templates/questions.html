@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="/bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <title>Question List</title>
 </head>
 <body>
-<h1>Question List</h1>
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Content</th>
-    </tr>
-    <tr th:each="question : ${questionsPage.content}">
-        <td th:text="${question.title}"></td>
-        <td th:text="${question.content}"></td>
-        <td><a th:href="@{/questions/{id}(id=${question.id})}">View Details</a></td>
-    </tr>
-</table>
-<a href="/questions/new">Ask a new question</a>
+<div class="container">
+    <h1 class="mt-4 mb-4">Question List</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="question : ${questionsPage.content}">
+            <td th:text="${question.title}"></td>
+            <td th:text="${question.content}"></td>
+            <td><a th:href="@{/questions/{id}(id=${question.id})}" class="btn btn-primary">View Details</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/questions/new" class="btn btn-success">Ask a new question</a>
 
-<div th:if="${questionsPage.totalPages > 1}">
-    <ul>
-        <li th:each="pageNumber : ${#numbers.sequence(0, questionsPage.totalPages - 1)}">
-            <a th:href="@{/questions(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
-        </li>
-    </ul>
+    <nav th:if="${questionsPage.totalPages > 1}" class="mt-4">
+        <ul class="pagination">
+            <li th:each="pageNumber : ${#numbers.sequence(0, questionsPage.totalPages - 1)}"
+                th:class="${pageNumber == questionsPage.number ? 'page-item active' : 'page-item'}">
+                <a th:href="@{/questions(page=${pageNumber})}" th:text="${pageNumber + 1}" class="page-link"></a>
+            </li>
+        </ul>
+    </nav>
 </div>
 </body>
 </html>
