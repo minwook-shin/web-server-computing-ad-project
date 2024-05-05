@@ -2,6 +2,7 @@ package io.github.minwookshin.webserveradproject.controllers
 
 import io.github.minwookshin.webserveradproject.entities.Question
 import io.github.minwookshin.webserveradproject.services.QuestionService
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/questions")
 class QuestionController(private val questionService: QuestionService) {
     @GetMapping
-    fun listQuestions(model: Model): String {
-        val questions = questionService.getQuestions()
-        model.addAttribute("questions", questions)
+    fun listQuestions(@RequestParam(defaultValue = "0") page: Int, model: Model): String {
+        val pageable = PageRequest.of(page, 5)
+        val questionsPage = questionService.getQuestionsPage(pageable)
+        model.addAttribute("questionsPage", questionsPage)
         return "questions"
     }
 
@@ -34,7 +36,7 @@ class QuestionController(private val questionService: QuestionService) {
     }
 
     @PostMapping
-    fun createQuestion(@ModelAttribute question: Question): String{
+    fun createQuestion(@ModelAttribute question: Question): String {
         questionService.saveQuestion(question)
         return "redirect:/questions"
     }
