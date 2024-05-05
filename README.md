@@ -6,6 +6,9 @@ It is a web application developed using Kotlin, Spring Boot.
 
 The application is designed to provide a platform for users to ask questions and receive answers.
 
+![img](img/img.png) ![img_1](img/img_1.png)
+
+
 ## Features
 
 The application provides the following features:
