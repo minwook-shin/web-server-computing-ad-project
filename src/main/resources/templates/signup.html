@@ -8,6 +8,7 @@
 <body>
 <div class="container">
     <h1 class="mt-4 mb-4">Sign Up</h1>
+    <!-- "/signup" URL POST 요청 전송하고, th:object="${user}" - User 객체 바인딩 -->
     <form th:action="@{/signup}" th:object="${user}" method="post" class="mb-4">
         <div class="mb-3">
             <label for="username" class="form-label">Username:</label>

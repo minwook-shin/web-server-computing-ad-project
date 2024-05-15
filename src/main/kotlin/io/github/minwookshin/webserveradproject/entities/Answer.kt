@@ -10,6 +10,11 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.JoinColumn
 
 @Entity
+/**
+ * 답변 엔티티 클래스
+ *
+ * @property question Question 엔티티와 다대일 관계
+ */
 data class Answer(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,

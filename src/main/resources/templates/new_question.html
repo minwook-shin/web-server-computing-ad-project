@@ -9,6 +9,7 @@
 <div th:replace="fragments :: appbar"></div>
 <div class="container">
     <h1 class="mt-4 mb-4">New Question</h1>
+    <!-- "/questions" URL POST 요청 전송 -->
     <form action="#" th:action="@{/questions}" method="post" class="mb-4">
         <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
